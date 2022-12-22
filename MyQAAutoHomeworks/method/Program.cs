@@ -3,7 +3,7 @@
     internal class Program
     {
 
-        static float Getsum(int[] myArray)
+        static float GetSum(int[] myArray)
         {
             float sum = 0;
             for (int i = 0; i < myArray.Length; i++)
@@ -47,7 +47,7 @@
 
             int[] student = { 9, 8, 9, 10, 4, 7 };
 
-            float sum = Getsum(student);
+            float sum = GetSum(student);
             Console.WriteLine(sum);
 
             int minNumber = GetMinNumber(student);
@@ -58,7 +58,7 @@
 
             int[] student2 = { 10, 8, 9, 10, 10, 9 };
 
-            sum = Getsum(student2);
+            sum = GetSum(student2);
             Console.WriteLine(sum);
 
             int minNumber2 = GetMinNumber(student2);
@@ -69,7 +69,7 @@
 
             int[] student3 = { 9, 8, 8, 10, 4, 7 };
 
-            sum = Getsum(student3);
+            sum = GetSum(student3);
             Console.WriteLine(sum);
 
             int minNumber3 = GetMinNumber(student3);
@@ -80,7 +80,7 @@
 
             int[] student4 = { 10, 10, 9, 10, 7, 8 };
 
-            sum = Getsum(student4);
+            sum = GetSum(student4);
             Console.WriteLine(sum);
 
             int minNumber4 = GetMinNumber(student4);
@@ -91,7 +91,7 @@
 
             int[] student5 = { 8, 9, 7, 10, 4, 7 };
 
-            sum = Getsum(student5);
+            sum = GetSum(student5);
             Console.WriteLine(sum);
 
             int minNumber5 = GetMinNumber(student5);
@@ -106,6 +106,7 @@
 
     }
 }
+
 
 
 
