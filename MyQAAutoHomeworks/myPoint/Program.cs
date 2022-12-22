@@ -1,19 +1,8 @@
 ﻿namespace myPoint
 {
-    // Create class point with coordinates
-    internal class Point
+    internal class Program
     {
-        public int x;
-        public int y;
-
-        // Create coordinate output method
-        public string GetInfo()
-        {
-            //coordinates
-            return "x = " + x + " y = " + y;
-
-
-        }
+        
         static void Main(string[] args)
         {
             Point point1 = new Point();
