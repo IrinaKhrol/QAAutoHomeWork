@@ -1,9 +1,11 @@
-﻿namespace MyClasses
+﻿
+namespace SuperCandidate
 {
-     internal class Person
+    internal class Person
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
         public Address Address { get; set; }
 
         public Person(string firstName, string lastName, Address address)
@@ -12,4 +14,5 @@
             LastName = lastName;
             Address = address;
         }
-}   }
+    }
+}

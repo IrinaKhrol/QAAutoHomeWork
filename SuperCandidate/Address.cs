@@ -1,9 +1,10 @@
-﻿namespace MyClasses
+﻿
+namespace SuperCandidate
 {
-     internal class Address
+    internal class Address
     {
         private const int Max_Home_Number = 1000;
-        private const int Max_Flat_Number = 10_100;
+        private const int Max_Flat_Number = 10_000;
         private int _home;
         private int _flat;
         public string City { get; set; }
@@ -22,20 +23,23 @@
                 }
             }
         }
-        public int Flat
+        public int Flat 
         {
             get
             {
                 return _flat;
             }
-            set
-            {
+            set 
+            { 
                 if (value > 0 && value < Max_Flat_Number)
                 {
-                    _flat = value;
+                    _flat = value; 
                 }
             }
+        
         }
+
+
         public Address(string city, string street, int home, int flat)
         {
             City = city;
@@ -43,5 +47,5 @@
             Home = home;
             Flat = flat;
         }
-    }   
+    }
 }

@@ -1,15 +1,16 @@
-﻿namespace MyClasses
+﻿
+namespace SuperCandidate
 {
-     internal class SubjectScore
+    internal class SubjectScore
     {
         private const int Max_Score = 10;
         private int _score;
         public string SubjectName { get; set; }
         public int Score 
-        { 
-            get 
-            { 
-                return _score; 
+        {
+            get
+            {
+                return _score;
             }
             set
             {
@@ -19,9 +20,11 @@
                 }
             }
         }
-        public SubjectScore(string subjectName, int score)
+
+        public SubjectScore (string subjectName, int score)
         {
             SubjectName = subjectName;
             Score = score;
         }
-}   }
+    }
+}
