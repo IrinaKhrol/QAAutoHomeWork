@@ -43,7 +43,8 @@ internal class Program
 
         foreach (UniversityEmployee employee in universityEmployees)
         {
-            var positionName = employee.GetPositionName();
+            //Console.WriteLine(employee.GetInfo());
+            var positionName = employee.GetInfo();
             if (positionName == "Teacher" || positionName == "DegreeTeacher")
             {
                 Console.WriteLine("University employess:" + employee.GetOfficialDuties());

@@ -17,4 +17,9 @@
         {
             return "University Employee";
         }
+
+        public virtual string GetInfo()
+        {
+            return GetType().Name;
+        }
 }
