@@ -4,32 +4,32 @@
     {
     static void Main(string[] args)
     {
-        UniversityEmployee employee1 = new Teacher 
+        var employee1 = new Teacher 
             (new Person("Ivan", "Ivanov"),
             0101,
             new Course("Phyth", "Qvantum Theory"));
 
-        UniversityEmployee employee2 = new DegreeTeacher
+        var employee2 = new DegreeTeacher
             (new Person("Irina", "Chernyavskaya"),
             0201,
             new Course("Biology", "Brain"),
             "Masterdegree",
             "Docent");
 
-        UniversityEmployee employee3 = new DegreeTeacher
+        var employee3 = new DegreeTeacher
             (new Person("Olga", "Volnaya"),
             0301,
             new Course("Chemistry", "Air"),
             "Proffessor",
             "Docent");
 
-        UniversityEmployee employee4 = new SupportStaff
+        var employee4 = new SupportStaff
             (new Person("Igor", "Krylov"), 
             0401,
             "Driver",
             "Driver Children");
 
-        UniversityEmployee employee5 = new SupportStaff
+        var employee5 = new SupportStaff
             (new Person("Peter", "Pen"),
             0501,
             "Cleaner",
@@ -58,8 +58,7 @@
 
         foreach (UniversityEmployee employee in universityEmployees)
         {
-            var positionName = employee.GetInfo();
-            if (positionName == "Teacher" || positionName == "DegreeTeacher")
+            if (employee is Teacher)
             {
                 Console.WriteLine("University employess:" + employee.GetOfficialDuties());
             }
