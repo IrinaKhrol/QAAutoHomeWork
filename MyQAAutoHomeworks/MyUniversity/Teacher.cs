@@ -1,4 +1,5 @@
 ﻿namespace MyUniversity;
+
     internal class Teacher: UniversityEmployee
     {
         public Course Course { get; set; }

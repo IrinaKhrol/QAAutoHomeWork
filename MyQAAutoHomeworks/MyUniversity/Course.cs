@@ -1,4 +1,5 @@
 ﻿namespace MyUniversity;
+
     internal class Course
     {
         public string Name { get; set; }

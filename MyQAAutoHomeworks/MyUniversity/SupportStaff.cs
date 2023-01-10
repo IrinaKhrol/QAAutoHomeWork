@@ -1,4 +1,5 @@
 ﻿namespace MyUniversity;
+
     internal class SupportStaff: UniversityEmployee
     {
         public string StaffName { get; set; }
