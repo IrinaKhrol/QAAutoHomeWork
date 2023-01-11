@@ -1,8 +1,8 @@
 ﻿namespace MyUniversityActive;
     internal class University
     {
-        public Staff[] Staffes { get; set; }
+        public List<Staff> Staffes { get; set; }
         public string Rector { get; set; }
-        public Building[] Buildings { get; set; }
+        public List<Building> Buildings { get; set; }
     
     }
