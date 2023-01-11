@@ -35,7 +35,7 @@
             "Cleaner",
             "Clean Window");
 
-        UniversityEmployee[] universityEmployees = new UniversityEmployee[]
+        List<UniversityEmployee> universityEmployees = new List<UniversityEmployee>
         {
             employee1,
             employee2,
