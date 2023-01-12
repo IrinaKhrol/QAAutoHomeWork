@@ -7,14 +7,6 @@ internal class University
     public string Rector { get; set; }
     public List<Building> Buildings { get; set; }
 
-    /*
-        Для всех сущностей, включающих списки List, обеспечить уникальность объектов в списке. 
-    Например, в университете должен быть только один сотрудник с конкретным ТахId,
-    попытка добавления сотрудника с тем же TaxId не должна быть успшной (сотрудник не добавляется).
-    Для этого в классе University сделать publuc метод AddEmployee, 
-    который проходит по списку сотрудников и сранивает их с новым кандидатом при помощи Equals.
-    Если сотрудник с таким TaxId не найден, добавляет его в список. 
-        */
     public bool AddEmployee(UniversityEmployee e)
     {
         foreach(UniversityEmployee employee in UniversityEmployees)
