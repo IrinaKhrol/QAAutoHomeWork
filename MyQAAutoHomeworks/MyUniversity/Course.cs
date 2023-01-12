@@ -10,4 +10,16 @@
             Name = name;
             Description = description;
         }
-    }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            else
+            {
+                Course? c = obj as Course;
+                return (Name == c.Name) && (Description == c.Description);
+            }
+        }

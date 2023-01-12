@@ -1,4 +1,6 @@
-﻿namespace MyClasses
+﻿using static System.Formats.Asn1.AsnWriter;
+
+namespace MyClasses
 {
      internal class Candidate
     {
@@ -10,4 +12,16 @@
             Person = person;
             SubjectScores = subjectScores;
         }
-}   }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            else
+            {
+                Candidate? c = obj as Candidate;
+                return (Person == c.Person) && (SubjectScores == c.SubjectScores);
+            }
+}    }  }

@@ -18,4 +18,17 @@
         {
             return "DegreeTeacher";
         }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj == null)
+            {
+            return false;
+            }
+            else
+            {
+            DegreeTeacher? d = obj as DegreeTeacher;
+            return (ScienceDegree == d.ScienceDegree) && (TitleTeaching == d.TitleTeaching);
+            }
+        }
     }

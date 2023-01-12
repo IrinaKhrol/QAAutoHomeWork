@@ -19,4 +19,19 @@ internal class UniversityEmployee
     {
         return "University Employee";
     }
+
+    public 
+
+    public override bool Equals(object? obj)
+    {
+        if (obj == null)
+        {
+            return false;
+        }
+        else
+        {
+            UniversityEmployee? u = obj as UniversityEmployee;
+            return (Person.Equals(u.Person)) && (TaxId == u.TaxId);
+        }
+    }
 }

@@ -8,7 +8,7 @@
         private int _flat;
         public string City { get; set; }
         public string Street { get; set; }
-        public int Home 
+        public int Home
         {
             get
             {
@@ -42,6 +42,19 @@
             Street = street;
             Home = home;
             Flat = flat;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            else
+            {
+                Address? a = obj as Address;
+                return (City == a.City) && (Street == a.Street) && (Home == a.Home) && (Flat == a.Flat);
+            }
         }
     }   
 }
