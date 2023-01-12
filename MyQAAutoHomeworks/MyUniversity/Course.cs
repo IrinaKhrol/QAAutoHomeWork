@@ -1,25 +1,27 @@
 ﻿namespace MyUniversity;
 
-    internal class Course
+internal class Course
+{
+    public string Name { get; set; }
+    public string Description { get; set; }
+
+    public Course(string name, string description)
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
+        Name = name;
+        Description = description;
+    }
 
-        public Course (string name, string description)
+    public override bool Equals(object? obj)
+    {
+        if (obj == null)
         {
-            Name = name;
-            Description = description;
+            return false;
         }
+        else
+        {
+            Course? c = obj as Course;
+            return (Name == c.Name) && (Description == c.Description);
+        }
+    }
 
-        public override bool Equals(object? obj)
-        {
-            if (obj == null)
-            {
-                return false;
-            }
-            else
-            {
-                Course? c = obj as Course;
-                return (Name == c.Name) && (Description == c.Description);
-            }
-        }
+}

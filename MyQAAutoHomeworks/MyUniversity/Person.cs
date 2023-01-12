@@ -14,13 +14,13 @@
 
         public override bool Equals(object? obj)
         {
-            if (obj == null)
-            {
+        if (obj == null || GetType() != obj.GetType())
+        {
                 return false;
             }
             else
             {
-            Person? p = obj as Person;
+                Person? p = obj as Person;
                 return (FirstName == p.FirstName) && (LastName == p.LastName);
             }
         }

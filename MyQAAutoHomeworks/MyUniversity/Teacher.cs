@@ -17,17 +17,4 @@
             return "Teacher";
         }
 
-
-    public override bool Equals(object? obj)
-    {
-        if (obj == null)
-        {
-            return false;
-        }
-        else
-        {
-            Teacher? t = obj as Teacher;
-            return (Course.Equals(t.Course));
-        }
-    }
 }

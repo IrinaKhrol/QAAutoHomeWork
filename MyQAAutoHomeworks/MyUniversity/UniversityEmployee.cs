@@ -20,8 +20,6 @@ internal class UniversityEmployee
         return "University Employee";
     }
 
-    public 
-
     public override bool Equals(object? obj)
     {
         if (obj == null)
@@ -31,7 +29,7 @@ internal class UniversityEmployee
         else
         {
             UniversityEmployee? u = obj as UniversityEmployee;
-            return (Person.Equals(u.Person)) && (TaxId == u.TaxId);
+            return (TaxId == u.TaxId);
         }
     }
 }
