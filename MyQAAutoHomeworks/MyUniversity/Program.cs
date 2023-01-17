@@ -1,4 +1,7 @@
-﻿namespace MyUniversity;
+﻿using static MyUniversity.DegreeTeacher;
+using static MyUniversity.University;
+
+namespace MyUniversity;
 
     internal class Program
     {
@@ -46,6 +49,12 @@
             0701,
             "Cleaner",
             "Clean Window");
+
+        var employee8 = new SupportStaff
+            (new Person("Oleg", "Ifakov"),
+            0801,
+            "Driver",
+            "Driver Children");
 
         List<UniversityEmployee> universityEmployees = new List<UniversityEmployee>
         {
@@ -110,7 +119,8 @@
         List<Building> buildings = new List<Building> { building1, building2 };
         university1.Buildings = buildings;
 
-        if (university1.AddBuilding(building2))
+
+        if (university1.Add<Building>(building2, university1.Buildings))
         {
             Console.WriteLine("New Building has been added");
         }
@@ -119,7 +129,7 @@
             Console.WriteLine("New Building has not been added");
         }
 
-        if (university1.AddBuilding(building3))
+        if (university1.Add<Building>(building3, university1.Buildings))
         {
             Console.WriteLine("New Building has been added");
         }
@@ -127,15 +137,37 @@
         {
             Console.WriteLine("New Building has not been added");
         }
+
+        // add 
 
         university1.UniversityEmployees = universityEmployees;
 
-        var result = university1.AddEmployee(employee6);
+        if (university1.Add<UniversityEmployee>(employee5, university1.UniversityEmployees))
+        {
+            Console.WriteLine("New Employee has been added");
+        }
+        else
+        {
+            Console.WriteLine("New Employee has not been added");
+        }
 
-        var result1 = university1.AddEmployee(employee7);
 
-        Console.WriteLine(result);
-        Console.WriteLine(result1);
+        if (university1.Add<UniversityEmployee>(employee8, university1.UniversityEmployees))
+        {
+            Console.WriteLine("New Employee has been added");
+        }
+        else
+        {
+            Console.WriteLine("New Employee has not been added");
+        }
+
+
+
+
+
+        //var result = university1.Add<UniversityEmployee>(employee6, university1.UniversityEmployees);
+
+        //Console.WriteLine(result);
         Console.WriteLine(university1.Rector);
 
     }

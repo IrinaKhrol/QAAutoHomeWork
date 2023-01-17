@@ -1,4 +1,7 @@
-﻿namespace MyUniversity;
+﻿using System.Linq;
+using System.Reflection.Metadata;
+
+namespace MyUniversity;
 
 internal class University
 {
@@ -7,25 +10,15 @@ internal class University
     public string Rector { get; set; }
     public List<Building> Buildings { get; set; }
 
-    public bool AddEmployee(UniversityEmployee e)
-    {
-        foreach(UniversityEmployee employee in UniversityEmployees)
-        {
-            if(employee.Equals(e))
-                return false;
-        }
-        UniversityEmployees.Add(e);
-        return true;
-    }
 
-    public bool AddBuilding(Building b)
+    public bool Add<T>(T item, List<T> listitems)
     {
-        foreach (Building building in Buildings)
+        if (listitems.Contains(item))
         {
-            if (building.Equals(b))
-                return false;
+            return false;
         }
-        Buildings.Add(b);
+
+        listitems.Add(item);
+
         return true;
-    }
-}
+}   }

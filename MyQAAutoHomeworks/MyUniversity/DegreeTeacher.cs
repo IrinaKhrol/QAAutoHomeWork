@@ -10,6 +10,7 @@
             ScienceDegree = scienceDegree;
             TitleTeaching = titleTeaching;
         }
+
         public override string GetOfficialDuties()
         {
             return Course.Name + " " + Course.Description + " " + ScienceDegree;
