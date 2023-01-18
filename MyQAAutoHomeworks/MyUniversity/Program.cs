@@ -1,7 +1,4 @@
-﻿using static MyUniversity.DegreeTeacher;
-using static MyUniversity.University;
-
-namespace MyUniversity;
+﻿namespace MyUniversity;
 
     internal class Program
     {
@@ -20,7 +17,7 @@ namespace MyUniversity;
             "Docent");
 
         var employee3 = new DegreeTeacher
-            (new Person("Olga", "Volnaya"),
+            (new Person("Olga", "Pen"),
             0301,
             new Course("Chemistry", "Air"),
             "Proffessor",
@@ -33,7 +30,7 @@ namespace MyUniversity;
             "Driver Children");
 
         var employee5 = new SupportStaff
-            (new Person("Peter", "Pen"),
+            (new Person("Peter", "Isaakov"),
             0501,
             "Cleaner",
             "Clean Window");
@@ -56,15 +53,24 @@ namespace MyUniversity;
             "Driver",
             "Driver Children");
 
+        var employee9 = new Teacher
+            (new Person("Misha", "Ivanov"),
+            0101,
+            new Course("Phyth", "Qvantum Theory"));
+
         List<UniversityEmployee> universityEmployees = new List<UniversityEmployee>
         {
             employee1,
             employee2,
             employee3,
             employee4,
-            employee5
+            employee5,
+            employee6,
+            employee7,
+            employee9
         };
 
+        //Display duties for University Employee and Teacher
         Console.WriteLine("---------------University Employees-----------------");
 
 
@@ -93,8 +99,8 @@ namespace MyUniversity;
         building1.Address = "1420, Minsk, office2";
         building1.Cost = 10000000;
 
-        var room1 = new Room("Lection");
-        var room2 = new Room("Laboratory");
+        var room1 = new Room("Lection", 1);
+        var room2 = new Room("Laboratory", 23);
         List<Room> rooms1 = new List<Room> { room1, room2 };
         building1.rooms = rooms1;
 
@@ -102,24 +108,36 @@ namespace MyUniversity;
         building2.Address = "1420, Minsk, office3";
         building2.Cost = 25000000;
 
-        var room3 = new Room("Lection1");
-        var room4 = new Room("Laboratory1");
+        var room3 = new Room("Lection1", 34);
+        var room4 = new Room("Laboratory1", 5);
         List<Room> rooms2 = new List<Room> { room3, room4 };
         building2.rooms = rooms2;
 
         var building3 = new Building();
-        building2.Address = "1555, Minsk, office3";
-        building2.Cost = 25000000;
+        building3.Address = "1555, Minsk, office3";
+        building3.Cost = 25000000;
 
-        var room5 = new Room("Lection1");
-        var room6 = new Room("Laboratory1");
-        List<Room> rooms3 = new List<Room> { room3, room4 };
+        var room5 = new Room("Lection1", 7);
+        var room6 = new Room("Laboratory1", 24);
+        List<Room> rooms3 = new List<Room> { room5, room6 };
         building3.rooms = rooms3;
 
-        List<Building> buildings = new List<Building> { building1, building2 };
+        var building4 = new Building();
+
+        building4.Address = "1234, Grodno, dobry7";
+
+        var room7 = new Room("Lection", 8);
+        var room8 = new Room("Laboratiry", 43);
+        var room9 = new Room("Seminar", 26);
+        List<Room> rooms4 = new List<Room> { room7, room8, room9};
+        building4.rooms = rooms4;
+
+        List<Building> buildings = new List<Building> { building1, building2, building4 };
         university1.Buildings = buildings;
 
-
+        // Add building with University.Add<T>(T item, List<T> listitems)
+        Console.WriteLine();
+        Console.WriteLine("-------------------Building-----------------------------------------");
         if (university1.Add<Building>(building2, university1.Buildings))
         {
             Console.WriteLine("New Building has been added");
@@ -138,7 +156,9 @@ namespace MyUniversity;
             Console.WriteLine("New Building has not been added");
         }
 
-        // add 
+        // Add employee with University.Add<T>(T item, List<T> listitems)
+        Console.WriteLine();
+        Console.WriteLine("-------------------Employee-----------------------------------------");
 
         university1.UniversityEmployees = universityEmployees;
 
@@ -162,13 +182,79 @@ namespace MyUniversity;
         }
 
 
-
-
-
-        //var result = university1.Add<UniversityEmployee>(employee6, university1.UniversityEmployees);
-
-        //Console.WriteLine(result);
+        // Display Rector (object of type University)
+        Console.WriteLine();
+        Console.WriteLine("-------------------Rector-----------------------------------------");
         Console.WriteLine(university1.Rector);
 
+
+        // Display all university employees with a last name starting with a certain letter (optional)
+        Console.WriteLine();
+        Console.WriteLine("-------------------FirstLetterOfLastNameFilter-----------------------------------------");
+
+        var firstLetterOfLastNameFilter = "I";
+        var filteredlist = university1.UniversityEmployees.Where(item => item.Person.LastName.StartsWith(firstLetterOfLastNameFilter)).ToList();
+
+        foreach(UniversityEmployee u in filteredlist)
+        {
+            Console.WriteLine(u.Person.LastName);
+        }
+
+
+        //Display all university teachers who teach a specific course
+        Console.WriteLine();
+        Console.WriteLine("-------------------FilteredTeacherlist-----------------------------------------");
+
+        var courseNameFilter = "Phyth";
+
+        var filteredTeacherlist = university1.UniversityEmployees.OfType<Teacher>().Where(item => item.Course.Name.Equals(courseNameFilter)).ToList();
+
+        foreach (Teacher t in filteredTeacherlist)
+        {
+            Console.WriteLine(t.Person.FirstName + " " + t.Person.LastName + " " + t.Course.Name.ToString());
+        }
+
+
+        //Display TaxID and job duties of each employee
+        Console.WriteLine();
+        Console.WriteLine("-------------------TaxWithDuties-----------------------------------------");
+
+        var taxWithDuties = university1.UniversityEmployees.Select(item => item.TaxId.ToString() + " " + item.GetOfficialDuties()).ToList();
+
+        foreach (var u in taxWithDuties)
+        {
+            Console.WriteLine(u.ToString());
+        }
+
+
+        //Display the addresses of all buildings that have a room with a certain number (optional)
+        Console.WriteLine();
+        Console.WriteLine("-------------------FilteredBuildingslist-----------------------------------------");
+
+        var roomNumberFilter = 34;
+
+        var filteredBuildingslist = university1.Buildings.Where(item => item.rooms.Any(x => x.Number == roomNumberFilter)).ToList();
+
+        foreach (Building b in filteredBuildingslist)
+        {
+            Console.WriteLine(b.Address);
+        }
+
+
+        //Display the address of the building with the maximum number of rooms in it
+        Console.WriteLine();
+        Console.WriteLine("-------------------BuildingWithMaxRooms-----------------------------------------");
+
+        var buildingWithMaxRooms = university1.Buildings.MaxBy(item => item.rooms.Count());
+
+        Console.WriteLine(buildingWithMaxRooms.Address);
+
+
+        //Display the most common employee last name and the number of such employees
+        Console.WriteLine();
+        Console.WriteLine("-------------------PopularLastName-----------------------------------------");
+
+        var popularLastName = university1.UniversityEmployees.GroupBy(item => item.Person.LastName).MaxBy(item => item.Count());
+        Console.WriteLine(popularLastName.Key + " " + popularLastName.Count());
     }
 }
