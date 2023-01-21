@@ -1,9 +1,7 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿namespace MyUniversity;
 
-namespace MyUniversity;
-
-    internal class Program
-    {
+internal class Program
+{
     static void Main(string[] args)
     {
         var employee1 = new Teacher 
@@ -108,7 +106,7 @@ namespace MyUniversity;
 
         var room1 = new Room("Lection", 1);
         var room2 = new Room("Laboratory", 23);
-        List<Room> rooms1 = new List<Room> { room1, room2 };
+        var rooms1 = new List<Room> { room1, room2 };
         building1.rooms = rooms1;
 
         var building2 = new Building();
@@ -117,7 +115,7 @@ namespace MyUniversity;
 
         var room3 = new Room("Lection1", 34);
         var room4 = new Room("Laboratory1", 5);
-        List<Room> rooms2 = new List<Room> { room3, room4 };
+        var rooms2 = new List<Room> { room3, room4 };
         building2.rooms = rooms2;
 
         var building3 = new Building();
@@ -126,7 +124,7 @@ namespace MyUniversity;
 
         var room5 = new Room("Lection1", 7);
         var room6 = new Room("Laboratory1", 24);
-        List<Room> rooms3 = new List<Room> { room5, room6 };
+        var rooms3 = new List<Room> { room5, room6 };
         building3.rooms = rooms3;
 
         var building4 = new Building();
@@ -136,7 +134,7 @@ namespace MyUniversity;
         var room7 = new Room("Lection", 8);
         var room8 = new Room("Laboratiry", 43);
         var room9 = new Room("Seminar", 26);
-        List<Room> rooms4 = new List<Room> { room7, room8, room9};
+        var rooms4 = new List<Room> { room7, room8, room9};
         building4.rooms = rooms4;
 
         var buildings = new List<Building> { building1, building2, building4 };
