@@ -1,0 +1,6 @@
+﻿namespace MyUniversity
+{
+    interface IUniversityEntity
+    {
+    }
+}

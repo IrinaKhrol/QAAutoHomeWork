@@ -13,15 +13,11 @@ internal class Course
 
     public override bool Equals(object? obj)
     {
-        if (obj == null)
-        {
-            return false;
-        }
-        else
-        {
-            Course? c = obj as Course;
-            return (Name == c.Name) && (Description == c.Description);
-        }
+        return obj is Course c && Name == c.Name && Description == c.Description;
     }
 
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Name, Description);
+    }
 }

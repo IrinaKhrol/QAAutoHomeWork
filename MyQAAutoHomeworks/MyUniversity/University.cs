@@ -5,13 +5,12 @@ namespace MyUniversity;
 
 internal class University
 {
-    
     public List<UniversityEmployee> UniversityEmployees { get; set; }
     public string Rector { get; set; }
     public List<Building> Buildings { get; set; }
 
 
-    public bool Add<T>(T item, List<T> listitems)
+    public bool Add <T> (T item, List<T> listitems) where T:IUniversityEntity
     {
         if (listitems.Contains(item))
         {
@@ -21,4 +20,5 @@ internal class University
         listitems.Add(item);
 
         return true;
-}   }
+    }
+}

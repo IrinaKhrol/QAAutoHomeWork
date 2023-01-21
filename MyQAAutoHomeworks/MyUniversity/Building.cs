@@ -1,6 +1,6 @@
 ﻿namespace MyUniversity;
 
-internal class Building: UniversityProperty
+internal class Building: UniversityProperty, IUniversityEntity
 {
     public string Address { get; set; }
     public List<Room> rooms { get; set; }
@@ -9,15 +9,12 @@ internal class Building: UniversityProperty
 
     public override bool Equals(object? obj)
     {
-        if (obj == null)
-        {
-            return false;
-        }
-        else
-        {
-            Building? b = obj as Building;
-            return (Address == b.Address);
-        }
+        return obj is Building b && Address == b.Address;
+    }
+
+    public override int GetHashCode()
+    {
+        return Address.GetHashCode();
     }
 }
 

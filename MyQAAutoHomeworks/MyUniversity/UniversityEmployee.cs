@@ -1,6 +1,6 @@
 ﻿namespace MyUniversity;
 
-internal class UniversityEmployee
+internal class UniversityEmployee: IUniversityEntity
 {
     public Person Person { get; set; }
     public int TaxId { get; set; }
@@ -22,14 +22,11 @@ internal class UniversityEmployee
 
     public override bool Equals(object? obj)
     {
-        if (obj == null)
-        {
-            return false;
-        }
-        else
-        {
-            UniversityEmployee? u = obj as UniversityEmployee;
-            return (TaxId == u.TaxId);
-        }
+        return obj is UniversityEmployee u && TaxId == u.TaxId;
+    }
+
+    public override int GetHashCode()
+    {
+        return TaxId.GetHashCode();
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace MyUniversity;
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace MyUniversity;
 
     internal class Program
     {
@@ -58,7 +60,7 @@
             0101,
             new Course("Phyth", "Qvantum Theory"));
 
-        List<UniversityEmployee> universityEmployees = new List<UniversityEmployee>
+        var universityEmployees = new List<UniversityEmployee>
         {
             employee1,
             employee2,
@@ -89,6 +91,11 @@
             {
                 Console.WriteLine("University employess:" + employee.GetOfficialDuties());
             }
+        }
+
+        static int GetLastName(UniversityEmployee u)
+        {
+            return u.TaxId;
         }
 
 
@@ -132,28 +139,23 @@
         List<Room> rooms4 = new List<Room> { room7, room8, room9};
         building4.rooms = rooms4;
 
-        List<Building> buildings = new List<Building> { building1, building2, building4 };
+        var buildings = new List<Building> { building1, building2, building4 };
         university1.Buildings = buildings;
 
         // Add building with University.Add<T>(T item, List<T> listitems)
         Console.WriteLine();
         Console.WriteLine("-------------------Building-----------------------------------------");
-        if (university1.Add<Building>(building2, university1.Buildings))
-        {
-            Console.WriteLine("New Building has been added");
-        }
-        else
-        {
-            Console.WriteLine("New Building has not been added");
-        }
 
-        if (university1.Add<Building>(building3, university1.Buildings))
+        foreach (var building in new Building[] { building2, building3 })
         {
-            Console.WriteLine("New Building has been added");
-        }
-        else
-        {
-            Console.WriteLine("New Building has not been added");
+            if (university1.Add(building, university1.Buildings))
+            {
+                Console.WriteLine("New Building has been added");
+            }
+            else
+            {
+                Console.WriteLine("New Building has not been added");
+            }
         }
 
         // Add employee with University.Add<T>(T item, List<T> listitems)
@@ -162,25 +164,17 @@
 
         university1.UniversityEmployees = universityEmployees;
 
-        if (university1.Add<UniversityEmployee>(employee5, university1.UniversityEmployees))
+        foreach (var employee in new UniversityEmployee[] { employee5, employee8 })
         {
-            Console.WriteLine("New Employee has been added");
+            if (university1.Add(employee, university1.UniversityEmployees))
+            {
+                Console.WriteLine("New Employee has been added");
+            }
+            else
+            {
+                Console.WriteLine("New Employee has not been added");
+            }
         }
-        else
-        {
-            Console.WriteLine("New Employee has not been added");
-        }
-
-
-        if (university1.Add<UniversityEmployee>(employee8, university1.UniversityEmployees))
-        {
-            Console.WriteLine("New Employee has been added");
-        }
-        else
-        {
-            Console.WriteLine("New Employee has not been added");
-        }
-
 
         // Display Rector (object of type University)
         Console.WriteLine();
@@ -193,11 +187,11 @@
         Console.WriteLine("-------------------FirstLetterOfLastNameFilter-----------------------------------------");
 
         var firstLetterOfLastNameFilter = "I";
-        var filteredlist = university1.UniversityEmployees.Where(item => item.Person.LastName.StartsWith(firstLetterOfLastNameFilter)).ToList();
+        var filteredlist = university1.UniversityEmployees.Select(x => (x.Person.LastName, x.TaxId)).Where(x => x.TaxId > 10).Select(x => x.LastName).ToList();
 
-        foreach(UniversityEmployee u in filteredlist)
+        foreach(var u in filteredlist)
         {
-            Console.WriteLine(u.Person.LastName);
+            Console.WriteLine(u);
         }
 
 
@@ -209,7 +203,7 @@
 
         var filteredTeacherlist = university1.UniversityEmployees.OfType<Teacher>().Where(item => item.Course.Name.Equals(courseNameFilter)).ToList();
 
-        foreach (Teacher t in filteredTeacherlist)
+        foreach (var t in filteredTeacherlist)
         {
             Console.WriteLine(t.Person.FirstName + " " + t.Person.LastName + " " + t.Course.Name.ToString());
         }
@@ -235,7 +229,7 @@
 
         var filteredBuildingslist = university1.Buildings.Where(item => item.rooms.Any(x => x.Number == roomNumberFilter)).ToList();
 
-        foreach (Building b in filteredBuildingslist)
+        foreach (var b in filteredBuildingslist)
         {
             Console.WriteLine(b.Address);
         }
