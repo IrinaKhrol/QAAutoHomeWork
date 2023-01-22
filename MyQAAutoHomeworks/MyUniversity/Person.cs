@@ -7,6 +7,10 @@ internal class Person
 
     public Person(string firstName, string lastName)
     {
+        if (firstName.Length + lastName.Length > 20)
+        {
+            throw new ArgumentException("Wrong firstName and lastName");
+        }
         FirstName = firstName;
         LastName = lastName;
     }

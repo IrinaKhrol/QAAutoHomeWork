@@ -1,4 +1,7 @@
-﻿namespace MyUniversity;
+﻿using System.Security.Cryptography.X509Certificates;
+using System.Text.RegularExpressions;
+
+namespace MyUniversity;
 
 internal class Program
 {
@@ -248,5 +251,76 @@ internal class Program
 
         var popularLastName = university1.UniversityEmployees.GroupBy(item => item.Person.LastName).MaxBy(item => item.Count());
         Console.WriteLine(popularLastName.Key + " " + popularLastName.Count());
+
+
+        //Implement TaxId check in Employee constructor, if TaxId is less than 0 - throw ArgumentException
+        Console.WriteLine();
+        Console.WriteLine("-------------------ArgumentExceptionTaxId-----------------------------------------");
+
+        try
+        {
+            new SupportStaff
+            (new Person("Ivan", "Krylov"),
+            -0401,
+            "Driver",
+            "Driver Children");
+        }
+        catch (ArgumentException ex) 
+        { 
+            Console.WriteLine(ex.Message + "Sorry");
+        }
+
+
+        //Implement checking the length of the employee's first and last name,
+        //if the total length of the first and last name is more than 15 characters - throw an ArgumentException
+        Console.WriteLine();
+        Console.WriteLine("-------------------ArgumentException-----------------------------------------");
+
+        try
+        {
+            new Person("Iriiiiiiiina", "Khrooooooooooooool");
+        }
+        catch(ArgumentException ex)
+        {
+            Console.WriteLine(ex.Message + "Sorry, do not worry:)");
+        }
+
+        //Sort the list of employees by the total length of the first and last name in descending order using
+        //the Sort(IComparer) method
+        Console.WriteLine();
+        Console.WriteLine("-------------------Sorted list of employees by total length of first and last name in descending order----");
+
+        universityEmployees.Sort();
+        universityEmployees.Reverse();
+
+        foreach (var u in universityEmployees)
+        {
+            Console.WriteLine(u.Person.FirstName + " " + u.Person.LastName);
+        }
+
+        //Sort the list of employees by the total length of the first and last name in descending order using
+        //the Sort method
+        Console.WriteLine("------------------------------------------------------------------------------------");
+
+
+        universityEmployees.Sort((x, y) => (x.Person.FirstName.Length + x.Person.LastName.Length).CompareTo((y.Person.FirstName.Length + y.Person.LastName.Length)));
+        universityEmployees.Reverse();
+
+        foreach (var u in universityEmployees)
+        {
+            Console.WriteLine(u.Person.FirstName + " " + u.Person.LastName);
+        }
+
+
+        //Sort the list of employees by the total length of the first and last name in descending order using
+        //the LINQ OrderBy() method
+        Console.WriteLine("----------------------------------------------------------------------------------");
+
+        var orderedPeople = university1.UniversityEmployees.OrderByDescending(x => x.Person.FirstName.Length + x.Person.LastName.Length);
+
+        foreach (var u in orderedPeople)
+        {
+            Console.WriteLine(u.Person.FirstName + " " + u.Person.LastName);
+        }
     }
 }
