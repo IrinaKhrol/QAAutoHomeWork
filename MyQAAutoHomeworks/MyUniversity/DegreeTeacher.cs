@@ -1,5 +1,4 @@
 ﻿namespace MyUniversity;
-
 internal class DegreeTeacher : Teacher
 {
     public string ScienceDegree { get; set; }

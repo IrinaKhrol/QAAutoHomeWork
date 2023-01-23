@@ -1,6 +1,6 @@
 ﻿namespace MyUniversity;
 
-internal class Room
+public class Room
 {
     private const int Max_Room_Number = 10000;
     public string Purpose { get; set; }

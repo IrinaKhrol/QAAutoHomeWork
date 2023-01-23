@@ -10,7 +10,7 @@ internal class University
     public List<Building> Buildings { get; set; }
 
 
-    public bool Add <T> (T item, List<T> listitems) where T:IUniversityEntity
+    public bool Add <T> (T item, List<T> listitems) where T:UniversityEntity
     {
         if (listitems.Contains(item))
         {

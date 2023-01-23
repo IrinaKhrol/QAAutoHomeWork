@@ -1,5 +1,4 @@
 ﻿namespace MyUniversity;
-
 internal sealed class Course
 {
     public string Name { get; set; }

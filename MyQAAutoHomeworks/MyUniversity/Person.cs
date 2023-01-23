@@ -1,7 +1,4 @@
-﻿using System.Xml.Linq;
-
-namespace MyUniversity;
-
+﻿namespace MyUniversity;
 internal sealed class Person
 {
     public string FirstName { get; set; }

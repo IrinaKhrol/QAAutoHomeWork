@@ -1,8 +1,6 @@
-﻿using System;
+﻿namespace MyUniversity;
 
-namespace MyUniversity;
-
-internal class UniversityEmployee: IUniversityEntity , IComparable<UniversityEmployee>
+internal class UniversityEmployee: UniversityEntity , IComparable<UniversityEmployee>
 {
     public Person Person { get; set; }
     public int TaxId { get; set; }
