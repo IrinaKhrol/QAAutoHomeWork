@@ -1,6 +1,8 @@
-﻿namespace MyUniversity;
+﻿using System.Xml.Linq;
 
-internal class Person
+namespace MyUniversity;
+
+internal sealed class Person
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
@@ -18,6 +20,11 @@ internal class Person
     public override bool Equals(object? obj)
     {
         return obj is Person p && FirstName == p.FirstName && LastName == p.LastName;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(FirstName, LastName);
     }
 }
 

@@ -110,7 +110,7 @@ internal class Program
         var room1 = new Room("Lection", 1);
         var room2 = new Room("Laboratory", 23);
         var rooms1 = new List<Room> { room1, room2 };
-        building1.rooms = rooms1;
+        building1.Rooms = rooms1;
 
         var building2 = new Building();
         building2.Address = "1420, Minsk, office3";
@@ -119,7 +119,7 @@ internal class Program
         var room3 = new Room("Lection1", 34);
         var room4 = new Room("Laboratory1", 5);
         var rooms2 = new List<Room> { room3, room4 };
-        building2.rooms = rooms2;
+        building2.Rooms = rooms2;
 
         var building3 = new Building();
         building3.Address = "1555, Minsk, office3";
@@ -128,7 +128,7 @@ internal class Program
         var room5 = new Room("Lection1", 7);
         var room6 = new Room("Laboratory1", 24);
         var rooms3 = new List<Room> { room5, room6 };
-        building3.rooms = rooms3;
+        building3.Rooms = rooms3;
 
         var building4 = new Building();
 
@@ -138,7 +138,7 @@ internal class Program
         var room8 = new Room("Laboratiry", 43);
         var room9 = new Room("Seminar", 26);
         var rooms4 = new List<Room> { room7, room8, room9};
-        building4.rooms = rooms4;
+        building4.Rooms = rooms4;
 
         var buildings = new List<Building> { building1, building2, building4 };
         university1.Buildings = buildings;
@@ -188,7 +188,10 @@ internal class Program
         Console.WriteLine("-------------------FirstLetterOfLastNameFilter-----------------------------------------");
 
         var firstLetterOfLastNameFilter = "I";
-        var filteredlist = university1.UniversityEmployees.Select(x => (x.Person.LastName, x.TaxId)).Where(x => x.TaxId > 10).Select(x => x.LastName).ToList();
+        var filteredlist = university1.UniversityEmployees
+            .Where(x => x.TaxId > 10)
+            .Select(x => x.Person.LastName)
+            .ToList();
 
         foreach(var u in filteredlist)
         {
@@ -202,7 +205,11 @@ internal class Program
 
         var courseNameFilter = "Phyth";
 
-        var filteredTeacherlist = university1.UniversityEmployees.OfType<Teacher>().Where(item => item.Course.Name.Equals(courseNameFilter)).ToList();
+        var filteredTeacherlist = university1.UniversityEmployees
+            .OfType<Teacher>()
+            .Where(item => item.Course.Name
+            .Equals(courseNameFilter))
+            .ToList();
 
         foreach (var t in filteredTeacherlist)
         {
@@ -214,7 +221,11 @@ internal class Program
         Console.WriteLine();
         Console.WriteLine("-------------------TaxWithDuties-----------------------------------------");
 
-        var taxWithDuties = university1.UniversityEmployees.Select(item => item.TaxId.ToString() + " " + item.GetOfficialDuties()).ToList();
+        var taxWithDuties = university1.UniversityEmployees
+            .Select(item => item.TaxId
+            .ToString() + " " + item
+            .GetOfficialDuties())
+            .ToList();
 
         foreach (var u in taxWithDuties)
         {
@@ -228,7 +239,10 @@ internal class Program
 
         var roomNumberFilter = 34;
 
-        var filteredBuildingslist = university1.Buildings.Where(item => item.rooms.Any(x => x.Number == roomNumberFilter)).ToList();
+        var filteredBuildingslist = university1.Buildings
+            .Where(item => item.Rooms
+            .Any(x => x.Number == roomNumberFilter))
+            .ToList();
 
         foreach (var b in filteredBuildingslist)
         {
@@ -240,7 +254,9 @@ internal class Program
         Console.WriteLine();
         Console.WriteLine("-------------------BuildingWithMaxRooms-----------------------------------------");
 
-        var buildingWithMaxRooms = university1.Buildings.MaxBy(item => item.rooms.Count());
+        var buildingWithMaxRooms = university1.Buildings
+            .MaxBy(item => item.Rooms
+            .Count());
 
         Console.WriteLine(buildingWithMaxRooms.Address);
 
@@ -249,7 +265,10 @@ internal class Program
         Console.WriteLine();
         Console.WriteLine("-------------------PopularLastName-----------------------------------------");
 
-        var popularLastName = university1.UniversityEmployees.GroupBy(item => item.Person.LastName).MaxBy(item => item.Count());
+        var popularLastName = university1.UniversityEmployees
+            .GroupBy(item => item.Person.LastName)
+            .MaxBy(item => item
+            .Count());
         Console.WriteLine(popularLastName.Key + " " + popularLastName.Count());
 
 
@@ -303,7 +322,8 @@ internal class Program
         Console.WriteLine("------------------------------------------------------------------------------------");
 
 
-        universityEmployees.Sort((x, y) => (x.Person.FirstName.Length + x.Person.LastName.Length).CompareTo((y.Person.FirstName.Length + y.Person.LastName.Length)));
+        universityEmployees.Sort((x, y) => (x.Person.FirstName.Length + x.Person.LastName.Length)
+        .CompareTo((y.Person.FirstName.Length + y.Person.LastName.Length)));
         universityEmployees.Reverse();
 
         foreach (var u in universityEmployees)
@@ -316,7 +336,8 @@ internal class Program
         //the LINQ OrderBy() method
         Console.WriteLine("----------------------------------------------------------------------------------");
 
-        var orderedPeople = university1.UniversityEmployees.OrderByDescending(x => x.Person.FirstName.Length + x.Person.LastName.Length);
+        var orderedPeople = university1.UniversityEmployees
+            .OrderByDescending(x => x.Person.FirstName.Length + x.Person.LastName.Length);
 
         foreach (var u in orderedPeople)
         {

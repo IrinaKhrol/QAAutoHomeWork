@@ -1,6 +1,5 @@
-﻿namespace MyUniversity
+﻿namespace MyUniversity;
+
+interface IUniversityEntity
 {
-    interface IUniversityEntity
-    {
-    }
 }
