@@ -1,6 +1,5 @@
 ﻿namespace MyUniversity;
-
-internal class UniversityEmployee: UniversityEntity , IComparable<UniversityEmployee>
+public class UniversityEmployee: UniversityEntity, IComparable<UniversityEmployee>
 {
     public Person Person { get; set; }
     public int TaxId { get; set; }
@@ -43,6 +42,6 @@ internal class UniversityEmployee: UniversityEntity , IComparable<UniversityEmpl
             return 1;
         }
 
-        return Comparer<int>.Default.Compare((this.Person.FirstName.Length + this.Person.LastName.Length), (emp.Person.FirstName.Length + emp.Person.LastName.Length));
+        return - Person.FullNameLen() + emp.Person.FullNameLen();
     }
 }

@@ -1,5 +1,5 @@
 ﻿namespace MyUniversity;
- public internal class Building: UniversityProperty
+public class Building: UniversityProperty
 {
     public string Address { get; set; }
     public List<Room> Rooms { get; set; }

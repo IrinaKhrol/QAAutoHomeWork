@@ -1,17 +1,28 @@
 ﻿namespace MyUniversity;
-internal sealed class Person
+public sealed class Person
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
 
     public Person(string firstName, string lastName)
     {
-        if (firstName.Length + lastName.Length > 20)
+        if (firstName == null || lastName == null)
         {
-            throw new ArgumentException("Wrong firstName and lastName");
+            throw new ArgumentNullException("Attention empty field");
         }
+
         FirstName = firstName;
         LastName = lastName;
+
+        if (FullNameLen() > 20)
+        {
+            throw new ArgumentException("Too long firstName and lastName");
+        }
+    }
+
+    public int FullNameLen()
+    {
+        return FirstName.Length + LastName.Length;
     }
 
     public override bool Equals(object? obj)
@@ -22,6 +33,11 @@ internal sealed class Person
     public override int GetHashCode()
     {
         return HashCode.Combine(FirstName, LastName);
+    }
+
+    public override string ToString()
+    {
+        return FirstName + " " + LastName;
     }
 }
 

@@ -1,9 +1,5 @@
-﻿using System.Linq;
-using System.Reflection.Metadata;
-
-namespace MyUniversity;
-
-internal class University
+﻿namespace MyUniversity;
+public class University
 {
     public List<UniversityEmployee> UniversityEmployees { get; set; }
     public string Rector { get; set; }

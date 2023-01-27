@@ -293,7 +293,20 @@ internal class Program
         //Implement checking the length of the employee's first and last name,
         //if the total length of the first and last name is more than 15 characters - throw an ArgumentException
         Console.WriteLine();
+        Console.WriteLine("-------------------ArgumentNullException-----------------------------------------");
+
+        try
+        {
+            new Person("Irina ", null);
+        }
+        catch (ArgumentNullException ex)
+        {
+            Console.WriteLine(ex.Message + "Attention empty field");
+        }
+
+        Console.WriteLine();
         Console.WriteLine("-------------------ArgumentException-----------------------------------------");
+
 
         try
         {
@@ -310,25 +323,22 @@ internal class Program
         Console.WriteLine("-------------------Sorted list of employees by total length of first and last name in descending order----");
 
         universityEmployees.Sort();
-        universityEmployees.Reverse();
 
         foreach (var u in universityEmployees)
         {
-            Console.WriteLine(u.Person.FirstName + " " + u.Person.LastName);
+            Console.WriteLine(u.Person.ToString());
         }
 
         //Sort the list of employees by the total length of the first and last name in descending order using
         //the Sort method
         Console.WriteLine("------------------------------------------------------------------------------------");
 
-
-        universityEmployees.Sort((x, y) => (x.Person.FirstName.Length + x.Person.LastName.Length)
-        .CompareTo((y.Person.FirstName.Length + y.Person.LastName.Length)));
-        universityEmployees.Reverse();
+        var myComparer = Comparer<UniversityEmployee>.Create(
+            (x,y) => -x?.Person.FullNameLen() ?? 0 + y?.Person.FullNameLen() ?? 0);
 
         foreach (var u in universityEmployees)
         {
-            Console.WriteLine(u.Person.FirstName + " " + u.Person.LastName);
+            Console.WriteLine(u.Person.ToString());
         }
 
 
@@ -337,11 +347,11 @@ internal class Program
         Console.WriteLine("----------------------------------------------------------------------------------");
 
         var orderedPeople = university1.UniversityEmployees
-            .OrderByDescending(x => x.Person.FirstName.Length + x.Person.LastName.Length);
+            .OrderByDescending(x => x.Person.FullNameLen());
 
         foreach (var u in orderedPeople)
         {
-            Console.WriteLine(u.Person.FirstName + " " + u.Person.LastName);
+            Console.WriteLine(u.Person.ToString());
         }
     }
 }
