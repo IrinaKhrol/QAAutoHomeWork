@@ -10,10 +10,10 @@ namespace UniversityTest
         public void AddTestNegative()
         {
             var university1 = new University();
-            Building b1 = new Building();
+            var b1 = new Building();
             b1.Address = "1420, Minsk, office2";
 
-            Building b2 = new Building();
+            var b2 = new Building();
             b2.Address = "1420, Minsk, office3";
 
             var buildings = new List<Building> { b1, b2,};
@@ -26,13 +26,13 @@ namespace UniversityTest
         public void AddTestPositive()
         {
             var university1 = new University();
-            Building b1 = new Building();
+            var b1 = new Building();
             b1.Address = "1420, Minsk, office2";
 
-            Building b2 = new Building();
+            var b2 = new Building();
             b2.Address = "1420, Minsk, office3";
 
-            Building b3 = new Building();
+            var b3 = new Building();
             b3.Address = "1235, Minsk, office4";
 
             var buildings = new List<Building> { b1, b2, };

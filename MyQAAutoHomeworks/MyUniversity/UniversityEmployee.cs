@@ -1,16 +1,45 @@
-﻿namespace MyUniversity;
+﻿using System;
+
+namespace MyUniversity;
 public class UniversityEmployee: UniversityEntity, IComparable<UniversityEmployee>
 {
-    public Person Person { get; set; }
-    public int TaxId { get; set; }
+    private Person _person;
+    public Person Person
+    {
+        get
+        {
+            return _person;
+        }
+        set
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException("Wrong Person");
+            }
+            _person = value;
+        }
+    }
+
+    private int _taxId;
+    public int TaxId
+    {
+        get
+        {
+            return _taxId;
+        }
+        set
+        {
+            if (value < 0)
+            {
+                throw new ArgumentException("Wrong TaxId");
+            }
+            _taxId = value;
+        }
+    }
 
     public UniversityEmployee(Person person, int taxId)
     {
         Person = person;
-        if(taxId < 0) 
-        {
-                throw new ArgumentException("Wrong TaxId");
-        }
         TaxId = taxId;
     }
 

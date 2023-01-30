@@ -1,8 +1,34 @@
 ﻿namespace MyUniversity;
 public sealed class Person
 {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
+    private string _firstName;
+    public string FirstName 
+    {
+        get
+        {
+            return _firstName;
+        }
+
+        set
+        {
+            validateFullName(value, LastName is null ? "" : LastName);
+            _firstName = value;
+        }
+    }
+
+    private string _lastName;
+    public string LastName
+    {
+        get
+        {
+            return _lastName;
+        }
+        set
+        {
+            validateFullName(FirstName is null ? "" : FirstName, value);
+            _lastName = value;
+        }
+    }
 
     public Person(string firstName, string lastName)
     {
@@ -13,16 +39,19 @@ public sealed class Person
 
         FirstName = firstName;
         LastName = lastName;
+    }
 
-        if (FullNameLen() > 20)
+    private void validateFullName(string firstName, string lastName)
+    {
+        if ((firstName.Length + lastName.Length) > 20)
         {
-            throw new ArgumentException("Too long firstName and lastName");
+            throw new ArgumentException("Too long first name and last name");
         }
     }
 
     public int FullNameLen()
     {
-        return FirstName.Length + LastName.Length;
+        return (FirstName.Length + LastName.Length);
     }
 
     public override bool Equals(object? obj)

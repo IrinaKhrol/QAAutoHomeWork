@@ -353,5 +353,11 @@ internal class Program
         {
             Console.WriteLine(u.Person.ToString());
         }
+
+        float a = (float)1 / 3;
+        double n = 1 / 3.0;
+        var compareResult = a == n;
+
+        Console.WriteLine(compareResult);
     }
 }

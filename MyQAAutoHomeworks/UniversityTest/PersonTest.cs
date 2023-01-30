@@ -8,32 +8,34 @@ namespace UniversityTest
         [TestMethod]
         public void CheckLengthFullNamePositive()
         {
-            Person p = new Person("Irinaaaaaa", "Khrollllll");
+            var p = new Person("Irinaaaaaa", "Khrollllll");
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void CheckLengthFullNameNegative()
         {
-            Person p = new Person("Irinaaaaaaa", "Khrollllll");
+            var p = new Person("Irinaaaaaaa", "Khrolllllll");
         }
+
 
         [TestMethod]
         public void CheckMatchLastNameFirstNamePositive() 
         {
-            Person p = new Person("Vasilii", "Pupkin");
+            var p = new Person("Vasilii", "Pupkin");
 
-            Person p1 = new Person("Vasilii", "Pupkin");
+            var p1 = new Person("Vasilii", "Pupkin");
 
             Assert.IsTrue(p.Equals(p1));
+            Assert.AreNotEqual(p.GetHashCode, p1.GetHashCode());
         }
 
         [TestMethod]
         public void CheckMatchLastNameFirstNameNegative1()
         {
-            Person p = new Person("Vasilii", "Pupkin");
+            var p = new Person("Vasilii", "Pupkin");
 
-            Person p2 = new Person("Igor", "Pupkin");
+            var p2 = new Person("Igor", "Pupkin");
 
             Assert.IsFalse(p.Equals(p2));
         }
@@ -41,11 +43,18 @@ namespace UniversityTest
         [TestMethod]
         public void CheckMatchLastNameFirstNameNegative2()
         {
-            Person p = new Person("Vasilii", "Pupkin");
+            var p = new Person("Vasilii", "Pupkin");
 
-            Person p2 = new Person("Vasilii", "Govorun");
+            var p2 = new Person("Vasilii", "Govorun");
 
             Assert.IsFalse(p.Equals(p2));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ChekFirstNameandLastNameNegative()
+        {
+            var u = new UniversityEmployee(new Person(null, "Khrol"), 1234);
         }
     }
 }
