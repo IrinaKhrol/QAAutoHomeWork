@@ -1,21 +1,76 @@
-﻿namespace MyUniversity;
+﻿using System;
 
-    internal class UniversityEmployee
+namespace MyUniversity;
+public class UniversityEmployee: UniversityEntity, IComparable<UniversityEmployee>
+{
+    private Person _person;
+    public Person Person
     {
-        public Person Person { get; set; }
-        public int TaxId { get; set; }
+        get
+        {
+            return _person;
+        }
+        set
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException("Wrong Person");
+            }
+            _person = value;
+        }
+    }
 
-        public UniversityEmployee(Person person, int taxId)
+    private int _taxId;
+    public int TaxId
+    {
+        get
         {
-            Person = person;
-            TaxId = taxId;
+            return _taxId;
         }
-        public virtual string GetOfficialDuties()
+        set
         {
-            return "Be on time at the University";
+            if (value < 0)
+            {
+                throw new ArgumentException("Wrong TaxId");
+            }
+            _taxId = value;
+        }
+    }
+
+    public UniversityEmployee(Person person, int taxId)
+    {
+        Person = person;
+        TaxId = taxId;
+    }
+
+    public virtual string GetOfficialDuties()
+    {
+        return "Be on time at the University";
+    }
+
+    public virtual string GetPositionName()
+    {
+        return "University Employee";
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is UniversityEmployee u && TaxId == u.TaxId;
+    }
+
+    public override int GetHashCode()
+    {
+        return TaxId.GetHashCode();
+    }
+
+
+    public int CompareTo(UniversityEmployee emp)
+    {
+        if (emp == null)
+        {
+            return 1;
         }
 
-        public virtual string GetPositionName()
-        {
-            return "University Employee";
-        }
+        return - Person.FullNameLen() + emp.Person.FullNameLen();
+    }
+}

@@ -8,7 +8,7 @@ internal class Program
         var subjectScore2 = new SubjectScore("Phyth", 5);
         var address1 = new Address("Minsk", "Zybitskaya", 25, 4);
         var person1 = new Person("Ivan", "Ivanovich", address1);
-        SubjectScore[] subjectScores1 = new SubjectScore[] {
+        List<SubjectScore> subjectScores1 = new List<SubjectScore> {
             subjectScore1, 
             subjectScore2 
         };
@@ -19,7 +19,7 @@ internal class Program
         var subjectScore2_2 = new SubjectScore("Phyth", 7);
         var address2 = new Address("Brest", "Volnyay", 10, 23);
         var person2 = new Person("Igor", "Igorevich", address2);
-        SubjectScore[] subjectScores2 = new SubjectScore[] {
+        List<SubjectScore> subjectScores2 = new List<SubjectScore> {
             subjectScore1_1,
             subjectScore2_2
         };
@@ -30,7 +30,7 @@ internal class Program
         var subjectScore2_3 = new SubjectScore("Phyth", 2);
         var address3 = new Address("Gomel", "Kirova", 10, 23);
         var person3 = new Person("Lena", "Elenovna", address3);
-        SubjectScore[] subjectScores3 = new SubjectScore[] {
+        List<SubjectScore> subjectScores3 = new List<SubjectScore> {
             subjectScore1_3,
             subjectScore2_3
         };
@@ -41,10 +41,7 @@ internal class Program
         var subjectScore2_4 = new SubjectScore("Phyth", 7);
         var address4 = new Address("Gomel", "Dobraya", 30, 63);
         var person4 = new Person("Alex", "Alekseevich", address4);
-        SubjectScore[] subjectScores4 = new SubjectScore[] {
-            subjectScore1_4,
-            subjectScore2_4
-        };
+        List<SubjectScore> subjectScores4 = new List<SubjectScore> { subjectScore1_4, subjectScore2_4 };
         Candidate candidate4 = new Candidate(person4, subjectScores4);
 
         // Candidate5 initialization
@@ -52,15 +49,11 @@ internal class Program
         var subjectScore2_5 = new SubjectScore("Phyth", 9);
         var address5 = new Address("Minsk", "Kotrepovo", 45, 10);
         var person5 = new Person("Ivan", "Forotovich", address5);
-        SubjectScore[] subjectScores5 = new SubjectScore[]
-        {
-            subjectScore1_5,
-            subjectScore2_5
-        };
+        List<SubjectScore> subjectScores5 = new List<SubjectScore> { subjectScore1_5, subjectScore2_5 };
         Candidate candidate5 = new Candidate(person5, subjectScores5);
 
-        // Create array of 5 candidates
-        Candidate[] candidateInfos = new Candidate[]
+        // Create list of 5 candidates
+        List<Candidate> candidateInfos = new List<Candidate>
         {
             candidate1,
             candidate2,
@@ -78,7 +71,7 @@ internal class Program
             // Display all streets
             Console.WriteLine("street: " + candidate.Person.Address.Street);
 
-            for (int i = 0; i < candidate.SubjectScores.Length; i++)
+            for (int i = 0; i < candidate.SubjectScores.Count; i++)
             {
                 // Find the maximum score for the one of the subjects
                 if (candidate.SubjectScores[i].SubjectName == subjectName && maxScore < candidate.SubjectScores[i].Score)
