@@ -15,6 +15,7 @@ namespace UniversityTest
             b1.Address = "1420, Minsk, office2";
 
             Assert.IsTrue(b.Equals(b1));
+            Assert.AreEqual(b.GetHashCode(), b1.GetHashCode());
         }
 
         [TestMethod]

@@ -40,7 +40,7 @@ namespace UniversityTest
             var e2 = new UniversityEmployee(new Person("Irina", "Khrol"), 4321);
 
             Assert.AreEqual(0,e1.CompareTo(e2));
-            Assert.AreNotEqual(e1.GetHashCode, e2.GetHashCode());
+            Assert.AreEqual(e1.GetHashCode(), e2.GetHashCode());
         }
 
         [TestMethod]

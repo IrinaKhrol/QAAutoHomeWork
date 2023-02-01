@@ -20,6 +20,7 @@ namespace UniversityTest
             university1.Buildings = buildings;
 
             Assert.AreEqual(false, university1.Add(b1, university1.Buildings));
+            Assert.IsTrue(university1.Buildings.Contains(b1));
         }
 
         [TestMethod]
@@ -39,6 +40,7 @@ namespace UniversityTest
             university1.Buildings = buildings;
 
             Assert.AreEqual(true, university1.Add(b3, university1.Buildings));
+            Assert.IsTrue(university1.Buildings.Contains(b3));
         }
     }
 }

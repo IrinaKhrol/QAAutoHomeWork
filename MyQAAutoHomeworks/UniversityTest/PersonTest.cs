@@ -9,7 +9,10 @@ namespace UniversityTest
         public void CheckLengthFullNamePositive()
         {
             var p = new Person("Irinaaaaaa", "Khrollllll");
+
+            Assert.IsTrue(p.Equals(p));
         }
+
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
@@ -27,7 +30,7 @@ namespace UniversityTest
             var p1 = new Person("Vasilii", "Pupkin");
 
             Assert.IsTrue(p.Equals(p1));
-            Assert.AreNotEqual(p.GetHashCode, p1.GetHashCode());
+            Assert.AreEqual(p.GetHashCode(), p1.GetHashCode());
         }
 
         [TestMethod]

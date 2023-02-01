@@ -13,7 +13,7 @@ namespace UniversityTest
             var c1 = new Course("Phyth", "Qvantum Theory");
 
             Assert.IsTrue(c.Equals(c1));
-            Assert.AreNotEqual(c.GetHashCode, c1.GetHashCode());
+            Assert.AreEqual(c.GetHashCode(), c1.GetHashCode());
         }
 
         [TestMethod]
